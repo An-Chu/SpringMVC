@@ -15,7 +15,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body>
-        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -38,7 +38,7 @@
                         <div class="card-body">
                             <h4 class="card-title">${p.name}</h4>
                             <p class="card-text">${p.price} VND</p>
-                            <a href="#" class="btn btn-primary">See Profile</a>
+                            <a href="#" class="btn btn-primary">Đặt hàng</a>
                         </div>
                     </div>
                 </c:forEach>
@@ -48,7 +48,7 @@
         </section>
 
         <footer>
-            <div class="mt-4 p-5 bg-primary text-white rounded">
+            <div class="mt-4 p-5 bg-dark text-white rounded">
                 <h1>Footer</h1>
                 <p>Lorem ipsum...</p>
             </div>
