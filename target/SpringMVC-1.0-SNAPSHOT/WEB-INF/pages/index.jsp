@@ -26,11 +26,32 @@
                             <a class="nav-link" href="#">${c.name}</a>
                         </li>
                     </c:forEach>
-
-
-
                 </ul>
             </div>
         </nav>
+        <section class="container">
+
+            <div class="row">
+                <c:forEach items="${products}" var="p">
+                    <div class="card col-md-4 col-xs-12 m-2" style="width:400px">
+                        <img class="card-img-top" src="${p.image}" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">${p.name}</h4>
+                            <p class="card-text">${p.price} VND</p>
+                            <a href="#" class="btn btn-primary">See Profile</a>
+                        </div>
+                    </div>
+                </c:forEach>
+
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="mt-4 p-5 bg-primary text-white rounded">
+                <h1>Footer</h1>
+                <p>Lorem ipsum...</p>
+            </div>
+        </footer>
     </body>
 </html>

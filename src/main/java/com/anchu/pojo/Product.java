@@ -93,6 +93,13 @@ public class Product implements Serializable {
         this.name = name;
     }
 
+    public Product(Integer id, String name, String image, Long price) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -207,5 +214,5 @@ public class Product implements Serializable {
     public String toString() {
         return "com.anchu.pojo.Product[ id=" + id + " ]";
     }
-    
+
 }
