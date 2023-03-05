@@ -1,3 +1,17 @@
+com\anchu\pojo\Category.class
+com\anchu\pojo\OrderDetail.class
+com\anchu\pojo\Tag_.class
+com\anchu\pojo\User.class
+com\anchu\pojo\User_.class
 com\anchu\configs\WebApplicationContextConfig.class
+com\anchu\pojo\ProTag.class
+com\anchu\pojo\Product_.class
+com\anchu\pojo\OrderDetail_.class
+com\anchu\pojo\Category_.class
+com\anchu\pojo\ProTag_.class
+com\anchu\pojo\Product.class
 com\anchu\controllers\HomeController.class
 com\anchu\configs\DispatcherServletInitializer.class
+com\anchu\pojo\SaleOrder.class
+com\anchu\pojo\SaleOrder_.class
+com\anchu\pojo\Tag.class

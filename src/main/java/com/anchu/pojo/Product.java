@@ -24,16 +24,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author admin
+ * @author AnChuPC
  */
 @Entity
 @Table(name = "product")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id"),
@@ -172,7 +169,6 @@ public class Product implements Serializable {
         this.categoryId = categoryId;
     }
 
-    @XmlTransient
     public Collection<ProTag> getProTagCollection() {
         return proTagCollection;
     }
@@ -181,7 +177,6 @@ public class Product implements Serializable {
         this.proTagCollection = proTagCollection;
     }
 
-    @XmlTransient
     public Collection<OrderDetail> getOrderDetailCollection() {
         return orderDetailCollection;
     }

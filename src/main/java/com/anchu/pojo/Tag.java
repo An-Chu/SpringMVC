@@ -16,16 +16,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author admin
+ * @author AnChuPC
  */
 @Entity
 @Table(name = "tag")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tag.findAll", query = "SELECT t FROM Tag t"),
     @NamedQuery(name = "Tag.findById", query = "SELECT t FROM Tag t WHERE t.id = :id"),
@@ -74,7 +71,6 @@ public class Tag implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
     public Collection<ProTag> getProTagCollection() {
         return proTagCollection;
     }
