@@ -15,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,6 +23,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "pro_tag")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProTag.findAll", query = "SELECT p FROM ProTag p"),
     @NamedQuery(name = "ProTag.findById", query = "SELECT p FROM ProTag p WHERE p.id = :id")})

@@ -5,7 +5,7 @@
 package com.anchu.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,6 +27,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "user")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
@@ -84,7 +87,7 @@ public class User implements Serializable {
     @Column(name = "user_role")
     private String userRole;
     @OneToMany(mappedBy = "userId")
-    private Collection<SaleOrder> saleOrderCollection;
+    private Set<SaleOrder> saleOrderSet;
 
     public User() {
     }
@@ -176,12 +179,13 @@ public class User implements Serializable {
         this.userRole = userRole;
     }
 
-    public Collection<SaleOrder> getSaleOrderCollection() {
-        return saleOrderCollection;
+    @XmlTransient
+    public Set<SaleOrder> getSaleOrderSet() {
+        return saleOrderSet;
     }
 
-    public void setSaleOrderCollection(Collection<SaleOrder> saleOrderCollection) {
-        this.saleOrderCollection = saleOrderCollection;
+    public void setSaleOrderSet(Set<SaleOrder> saleOrderSet) {
+        this.saleOrderSet = saleOrderSet;
     }
 
     @Override

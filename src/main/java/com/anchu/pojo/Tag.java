@@ -5,7 +5,7 @@
 package com.anchu.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -23,6 +25,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tag")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tag.findAll", query = "SELECT t FROM Tag t"),
     @NamedQuery(name = "Tag.findById", query = "SELECT t FROM Tag t WHERE t.id = :id"),
@@ -41,7 +44,7 @@ public class Tag implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "tagId")
-    private Collection<ProTag> proTagCollection;
+    private Set<ProTag> proTagSet;
 
     public Tag() {
     }
@@ -71,12 +74,13 @@ public class Tag implements Serializable {
         this.name = name;
     }
 
-    public Collection<ProTag> getProTagCollection() {
-        return proTagCollection;
+    @XmlTransient
+    public Set<ProTag> getProTagSet() {
+        return proTagSet;
     }
 
-    public void setProTagCollection(Collection<ProTag> proTagCollection) {
-        this.proTagCollection = proTagCollection;
+    public void setProTagSet(Set<ProTag> proTagSet) {
+        this.proTagSet = proTagSet;
     }
 
     @Override

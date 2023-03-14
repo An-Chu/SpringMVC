@@ -5,8 +5,8 @@
 package com.anchu.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,6 +24,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,6 +33,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "product")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id"),
@@ -74,9 +77,9 @@ public class Product implements Serializable {
     @ManyToOne(optional = false)
     private Category categoryId;
     @OneToMany(mappedBy = "productId")
-    private Collection<ProTag> proTagCollection;
+    private Set<ProTag> proTagSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<OrderDetail> orderDetailCollection;
+    private Set<OrderDetail> orderDetailSet;
 
     public Product() {
     }
@@ -88,13 +91,6 @@ public class Product implements Serializable {
     public Product(Integer id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public Product(Integer id, String name, String image, Long price) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.price = price;
     }
 
     public Integer getId() {
@@ -169,20 +165,22 @@ public class Product implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public Collection<ProTag> getProTagCollection() {
-        return proTagCollection;
+    @XmlTransient
+    public Set<ProTag> getProTagSet() {
+        return proTagSet;
     }
 
-    public void setProTagCollection(Collection<ProTag> proTagCollection) {
-        this.proTagCollection = proTagCollection;
+    public void setProTagSet(Set<ProTag> proTagSet) {
+        this.proTagSet = proTagSet;
     }
 
-    public Collection<OrderDetail> getOrderDetailCollection() {
-        return orderDetailCollection;
+    @XmlTransient
+    public Set<OrderDetail> getOrderDetailSet() {
+        return orderDetailSet;
     }
 
-    public void setOrderDetailCollection(Collection<OrderDetail> orderDetailCollection) {
-        this.orderDetailCollection = orderDetailCollection;
+    public void setOrderDetailSet(Set<OrderDetail> orderDetailSet) {
+        this.orderDetailSet = orderDetailSet;
     }
 
     @Override
@@ -209,5 +207,5 @@ public class Product implements Serializable {
     public String toString() {
         return "com.anchu.pojo.Product[ id=" + id + " ]";
     }
-
+    
 }
