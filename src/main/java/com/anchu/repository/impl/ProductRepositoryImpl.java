@@ -40,7 +40,6 @@ public class ProductRepositoryImpl implements ProductRepository {
         List<Predicate> predicates = new ArrayList<>();
         // Filter by key word
         String kw = params.get("kw");
-        System.out.println("---------" + kw);
         if (kw != null && !kw.isEmpty()) {
             Predicate p = b.like(root.get("name").as(String.class),
                     String.format("%%%s%%", kw));
