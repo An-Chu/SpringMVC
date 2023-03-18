@@ -13,5 +13,7 @@ import java.util.Map;
  * @author AnChuPC
  */
 public interface ProductService {
-    List<Product> getProducts(Map<String, String> params);
+    public List<Product> getProducts(Map<String, String> params);
+    public Product getProductById(int id);
+    public boolean addOrUpdateProduct(Product p);
 }

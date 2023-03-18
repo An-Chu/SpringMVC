@@ -26,14 +26,16 @@
         <section class="container">
 
             <div class="row">
+
                 <c:forEach items="${products}" var="p">
-                    <div class="card col-md-4 col-xs-12 m-2" style="width:400px">
-                        <img class="card-img-top" src="${p.image}" alt="Card image">
+                    <c:url value="/product/${p.id}" var="detail"></c:url>
+                        <div class="card col-md-4 col-xs-12 m-2" style="width:400px">
+                            <img class="card-img-top" src="${p.image}" alt="Card image">
                         <div class="card-body">
                             <h4 class="card-title">${p.name}</h4>
                             <p class="card-text">${p.price} VND</p>
                             <a href="#" class="btn btn-danger">Đặt hàng</a>
-                            <a href="#" class="btn btn-primary">Xem chi tiết</a>
+                            <a href="${detail}" class="btn btn-primary">Xem chi tiết</a>
                         </div>
                     </div>
                 </c:forEach>

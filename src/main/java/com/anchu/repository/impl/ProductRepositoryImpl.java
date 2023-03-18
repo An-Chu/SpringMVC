@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,5 +78,24 @@ public class ProductRepositoryImpl implements ProductRepository {
         q.where(predicates.toArray(new Predicate[]{}));
         Query query = session.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        Session session = sessionFactory.getObject().getCurrentSession();
+        
+        return session.get(Product.class, id);
+    }
+
+    @Override
+    public boolean addOrUpdateProduct(Product p) {
+        Session s = sessionFactory.getObject().getCurrentSession();
+        
+        try {
+            s.save(p);
+            return true;
+        } catch(HibernateException err) {
+            return false;
+        }
     }
 }
