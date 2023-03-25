@@ -55,8 +55,8 @@ public class Product implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @NotNull(message = "{product.name.nullerr}")
+    @Size(min = 1, max = 50, message = "{product.name.lenerr}")
     @Column(name = "name")
     private String name;
     @Size(max = 255)
@@ -85,7 +85,7 @@ public class Product implements Serializable {
 
     @Transient
     private MultipartFile file;
-    
+
     public Product() {
     }
 
@@ -226,5 +226,5 @@ public class Product implements Serializable {
     public void setFile(MultipartFile file) {
         this.file = file;
     }
-    
+
 }

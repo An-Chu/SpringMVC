@@ -6,9 +6,11 @@ package com.anchu.controllers;
 
 import com.anchu.pojo.Product;
 import com.anchu.service.ProductService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +35,10 @@ public class AdminController {
     }
     
     @PostMapping(value = "/products")
-    private String addProduct(Model model,@ModelAttribute(value = "product") Product p) {
+    private String addProduct(Model model,@ModelAttribute(value = "product") @Valid Product p,
+            BindingResult result) {
+        if(result.hasErrors())
+            return "products";
         
         if(productService.addOrUpdateProduct(p)) {
             return "redirect:/";

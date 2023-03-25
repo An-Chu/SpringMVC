@@ -13,8 +13,15 @@
 
     <h1 class="text-center mb-3">Quản lý sản phẩm</h1>
 
+    <c:if test="${errMsg != null}">
+        <p class="txt-error">${errMsg}</p>
+    </c:if>
+    
     <c:url value="/admin/products/" var="admin"/>
     <form:form modelAttribute="product" method="POST" action="${admin}" enctype="multipart/form-data">
+        
+        <form:errors path="*" element="div" cssClass="alert alert-danger" />
+        
         <div class="form-floating mb-3 mt-3">
             <form:input path="name" class="form-control" placeholder="Enter name" name="name" id="name"/>
             <label for="email">Tên sản phẩm</label>
