@@ -7,12 +7,14 @@ package com.anchu.controllers;
 import com.anchu.pojo.Product;
 import com.anchu.service.ProductService;
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,7 +32,13 @@ public class AdminController {
     @GetMapping(value = "/products")
     private String products(Model model) {
         model.addAttribute("product", new Product());
-        
+        model.addAttribute("products", productService.getProducts(null));
+        return "products";
+    }
+    
+    @GetMapping(value = "/products/{productId}")
+    private String updateProduct(Model model, @PathVariable(value = "productId") int productId) {
+        model.addAttribute("product", productService.getProductById(productId));
         return "products";
     }
     

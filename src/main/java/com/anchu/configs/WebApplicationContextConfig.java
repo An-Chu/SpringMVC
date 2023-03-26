@@ -7,6 +7,7 @@ package com.anchu.configs;
 import com.anchu.formatter.CategoryFormatter;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import javax.faces.application.ResourceHandler;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,6 +20,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -77,10 +79,15 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         bean.setValidationMessageSource(messageSource());
         return bean;
     }
-    
+
     @Override
     public Validator getValidator() {
         return validator();
     }
-    
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/js/**")
+                .addResourceLocations("/resources/js/");
+    }
 }

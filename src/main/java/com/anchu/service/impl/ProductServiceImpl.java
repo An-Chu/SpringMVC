@@ -53,4 +53,9 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.addOrUpdateProduct(p);
     }
 
+    @Override
+    public boolean deleteProduct(int id) {
+        return productRepository.deleteProduct(id);
+    }
+
 }
