@@ -49,7 +49,7 @@ public class AdminController {
             return "products";
         
         if(productService.addOrUpdateProduct(p)) {
-            return "redirect:/";
+            return "redirect:/admin/products";
         }
         else {
             model.addAttribute("errMsg", "Somethong wrong!!!");

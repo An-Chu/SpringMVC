@@ -93,7 +93,11 @@ public class ProductRepositoryImpl implements ProductRepository {
         Session s = sessionFactory.getObject().getCurrentSession();
 
         try {
-            s.save(p);
+            if (p.getId() != null && p.getId() > 0) {
+                s.update(p);
+            } else {
+                s.save(p);
+            }   
             return true;
         } catch (HibernateException err) {
             return false;
@@ -111,6 +115,5 @@ public class ProductRepositoryImpl implements ProductRepository {
             return false;
         }
     }
-    
-    
+
 }

@@ -36,18 +36,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean addOrUpdateProduct(Product p) {
-
         Map response = null;
-        if (p.getFile() != null) {
+        if (!p.getFile().isEmpty()) {
             try {
                 response = cloudinary.uploader().upload(p.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                if (response != null) {
+                    p.setImage(response.get("secure_url").toString());
+                }
             } catch (IOException ex) {
-                System.out.println(ex.getMessage());
+                System.out.println("Err: " + ex.getMessage());
             }
-        }
-
-        if (response != null) {
-            p.setImage(response.get("secure_url").toString());
         }
 
         return productRepository.addOrUpdateProduct(p);

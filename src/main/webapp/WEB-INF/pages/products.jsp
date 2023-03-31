@@ -60,7 +60,19 @@
             <label for="file">Thêm ảnh</label>
         </div>
 
-        <button class="btn btn-danger mt-3">Thêm sản phẩm</button>
+        <div class="form-floating mt-2">
+            <c:choose>
+                <c:when test="${product.id > 0}">
+                    <form:hidden path="id" />
+                    <form:hidden path="image" />
+                    <input type="submit" value="Cập nhật sản phẩm" class="btn btn-success" />
+                </c:when>
+                <c:otherwise>
+                    <input type="submit" value="Thêm sản phẩm" class="btn btn-danger" />
+                </c:otherwise>
+            </c:choose>
+
+        </div>
     </form:form>
 
 
